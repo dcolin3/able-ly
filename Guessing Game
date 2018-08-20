@@ -1,0 +1,402 @@
+<style>
+  h1.ex1{
+    padding-left: 375px;
+    font-style: Arial;
+    font-size: 30px;
+    font-weight: 200px;
+    color: black;
+  }
+
+  h2.ex1{
+    padding-left: 200px;
+    font-style: Arial;
+    font-size: 30px;
+    font-weight: 200px;
+    color: black;
+  }
+  h3.ex1{
+    text-align: center;
+    font-style: Arial;
+    font-size: 20px;
+    font-weight: 200px;
+    color: black;
+  }
+  p.ex1{
+    font-style: Arial;
+    font-size: 20px;
+    font-weight: 200px;
+    color: black;
+  }
+</style>
+
+
+<h1 class="ex1">
+    Ablely Trivia </h1>
+<h2 class="ex1">
+
+      Asking question <span id="NumberAsked">1</span> of 10 with <span id="NumberCorrect">0</span> answers correct</h2>
+
+  <p>
+
+      <span id="TriviaQuestion">???</span>
+
+  </p>
+
+  <style>
+
+  #grad1 {
+      height:1440px;
+      width: 1440px;
+      background: linear-gradient(to right, steelblue , lightsteelblue); /* Standard syntax (must be last) */
+  }
+  </style>
+
+  <body id="grad1">
+
+
+  <h3 class="ex1">
+
+      &nbsp;
+
+      <input id="RadioTrue" type="radio" value="true" name="answer" checked="checked" /> True
+
+      &nbsp;&nbsp;&nbsp;
+
+      <input id="RadioFalse" type="radio" value="false" name="answer" /> False
+
+  </h3>
+
+  <p>
+
+      <input id="ButtonContinue" onclick="checkAnswer();" type="button" value="continue" />
+
+  </p>
+
+
+
+<p class="ex1">
+
+<script language="javascript" type="text/javascript">
+
+    // Array of trivia data
+
+    var TriviaData = new Array(29)
+
+    createTwoDimensionalArray(3);
+
+
+
+    // Variables to track state of the game
+
+    // i.e. number questions asked, current correct total and current question
+
+    var questionsAsked = 0;
+
+    var totalCorrect = 0;
+
+    var currentQuestion = 0;
+
+    var selectionValid = false;
+
+
+
+    // Questions and answers from https://www.englishclub.com/kids/what-am-i-e1.htm
+
+    TriviaData[0][0] = "I am hot. I live in the sky. I am bright. Don't look straight at me. I disappear in the night. Am I the sun?";
+// sun
+    TriviaData[1][0] = "I live in the water. You can drive me. I might make you sick. Don't put a hole in me. Tie me up when you're done. Am I a car? ";
+// boat
+    TriviaData[2][0] = "I am in your body. I am red. I am the symbol for love. Blood pumps through me. Please don't break me. Am I a heart?";
+// heart
+    TriviaData[3][0] = "I am red, green, or yellow. I am a healthy snack. I make good juice. You can bite me or slice me. Give me to a teacher. Am I an apple?";
+// apple
+    TriviaData[4][0] = "I am circular. I go up and down. You can throw me. You can catch me. Be careful with me near windows. Am I a jump rope?";
+// ball
+    TriviaData[5][0] = "I cry a lot. I love milk. Everyone smiles at me. Please pick me up. I'm new to the world. Am I a baby?";
+// baby
+    TriviaData[6][0] = "I am usually green and brown. I can live for a long time. I'm a house for a bird. Kids love to climb me. Am I the road?";
+// tree
+    TriviaData[7][0] = "I smell nice. I am beautiful. I come in many different colours. You can pick me. Don't forget to water me. Am I a flower?";
+// flower
+    TriviaData[8][0] = "I have five wheels. You need a key for me. You can sit inside me. Don't make me go too fast. Please wear my belt. Am I a bicycle?";
+// car
+    TriviaData[9][0] = "I twinkle. There are millions of me. I will light your way. I come out at night. I hide in the city. Am I a star?";
+// star
+    TriviaData[10][0] = "I use a long track. I transport heavy loads. Many tourists use me. Watch for lights to stop for me. Am I a box?"
+// train
+    TriviaData[11][0] = "Please blow air in me. I come in many colours. I'm a symbol of celebration. Don't touch me with anything sharp. I only last a day or two. Am I a balloon?"
+// balloon
+    TriviaData[12][0] = "Children love to play with me. I am not useful indoors. Don't tangle my long string. Look up and watch me dance. Run if you want me to fly faster. Am I a dog? "
+// kite
+    TriviaData[13][0] = "I a a safe ride. I go very high in the sky. You will get service on me. You can watch a movie inside me. I might make your ears pop. Am I an airplane?"
+// airplane
+    TriviaData[14][0] = "I am usually made of brick or wood. I have many doors and windows. I will keep you warm and cozy. Sell me when your family grows. Please clean me for visitors. Am I a computer?"
+// house
+    TriviaData[15][0] = "I am paper's enemy. Keep me away from small children. You use me in art class. I can change the style of your hair. Please don't run with me in your hands. Am I a pair of scissors?"
+// scissors
+    TriviaData[16][0] = "I will entertain you. I tell funny and sad stories. I am shaped like a cube. I plug into the wall. Many people fall asleep watching me. Am I a bed?"
+// television
+    TriviaData[17][0] = "The ocean is my real home. Humans trick me to bite. I am an easy pet to look after. Gold is a common colour of me. I like to blow bubbles. Am I a fish?"
+// fish
+    TriviaData[18][0] = "You don't always answer me. I can connect you to the world. I beep and ring. You have to press my buttons. Modern types of me are cordless. Am I an oven?"
+// telephone
+    TriviaData[19][0] = "I come in a paid. You have to tie and untie me. Don't go outside without me. Take me off before you go in the water. I come in a very useful box. Am I a pair of shoes?"
+// shoes
+    TriviaData[20][0] = "I am associated with Spring. I love to hop in the grass. I play in your vegetable garden. My teeth are long and sharp. I am soft to pet. Am I a flower?"
+// bunny
+    TriviaData[21][0] = "I am a home for royalty. There are many of me in England. I am made of stone. I am protected by a ring of water. I'm found in many legends. Am I a castle?"
+// castle
+    TriviaData[22][0] = "I have buttons or a zipper. You don't need me in the summer. Hang me in your front closet. I'll protect you from a  cold wind. I have pockets and sometimes a belt. Am I a pair of shorts?"
+// coat
+    TriviaData[23][0] = "I am multi-coloured. I appear after a storm. People always point at me. Everyone takes my picture. Legend says there is gold at the bottom of me. Am I a rainbow?"
+// rainbow
+    TriviaData[24][0] = "I am a delicious treat. Lick me with your tongue. I come in a bowl or a cone. Don't eat me too slowly. One of my flavours is vanilla. Am I soup?"
+// ice cream
+    TriviaData[25][0] = "I'm a pretend animal. I have four paws. I'm stuffed with fluff. Please take me to bed with you. Hug me if you have a bad dream. Am I a teddy bear?"
+// teddy bear
+    TriviaData[26][0] = "I live in the jungle. I love to eat bananas. I'm very similar to a human. I'm a curious creature. I have a long curly tail. Am I an owl?"
+// monkey
+    TriviaData[27][0] = "I am popular for winter sports. I can be very dangerous. You can go up or down me. I get colder as you go higher. Don't forget you saftey gear. Am I a mountain?"
+// mountain
+    TriviaData[28][0] = "You use me when you're resting. I protect your neck and head. I'm soft and comfortable. Ask for me on an airplane. Fighting with me is fun. Am I a chair?";
+// pillow
+
+
+
+
+
+    // Answers
+
+    TriviaData[0][1] = "true";
+
+    TriviaData[1][1] = "false";
+
+    TriviaData[2][1] = "true";
+
+    TriviaData[3][1] = "true";
+
+    TriviaData[4][1] = "false";
+
+    TriviaData[5][1] = "true";
+
+    TriviaData[6][1] = "false";
+
+    TriviaData[7][1] = "true";
+
+    TriviaData[8][1] = "false";
+
+    TriviaData[9][1] = "true";
+
+    TriviaData[10][1] = "false";
+
+    TriviaData[11][1] = "true";
+
+    TriviaData[12][1] = "false";
+
+    TriviaData[13][1] = "true";
+
+    TriviaData[14][1] = "false";
+
+    TriviaData[15][1] = "true";
+
+    TriviaData[16][1] = "false";
+
+    TriviaData[17][1] = "true";
+
+    TriviaData[18][1] = "false";
+
+    TriviaData[19][1] = "true";
+
+    TriviaData[20][1] = "false";
+
+    TriviaData[21][1] = "true";
+
+    TriviaData[22][1] = "false";
+
+    TriviaData[23][1] = "true";
+
+    TriviaData[24][1] = "false";
+
+    TriviaData[25][1] = "true";
+
+    TriviaData[26][1] = "false";
+
+    TriviaData[27][1] = "true";
+
+    TriviaData[28][1] = "false";
+
+
+
+    // Has question been asked
+
+    // -- necessary because we are asking in random order
+
+    TriviaData[0][2] = "no";
+
+    TriviaData[1][2] = "no";
+
+    TriviaData[2][2] = "no";
+
+    TriviaData[3][2] = "no";
+
+    TriviaData[4][2] = "no";
+
+    TriviaData[5][2] = "no";
+
+    TriviaData[6][2] = "no";
+
+    TriviaData[7][2] = "no";
+
+    TriviaData[8][2] = "no";
+
+    TriviaData[9][2] = "no";
+
+    TriviaData[10][2] = "no";
+
+    TriviaData[11][2] = "no";
+
+    TriviaData[12][2] = "no";
+
+    TriviaData[13][2] = "no";
+
+    TriviaData[14][2] = "no";
+
+    TriviaData[15][2] = "no";
+
+    TriviaData[16][2] = "no";
+
+    TriviaData[17][2] = "no";
+
+    TriviaData[18][2] = "no";
+
+    TriviaData[19][2] = "no";
+
+    TriviaData[20][2] = "no";
+
+    TriviaData[21][2] = "no";
+
+    TriviaData[22][2] = "no";
+
+    TriviaData[23][2] = "no";
+
+    TriviaData[24][2] = "no";
+
+    TriviaData[25][2] = "no";
+
+    TriviaData[26][2] = "no";
+
+    TriviaData[27][2] = "no";
+
+    TriviaData[28][2] = "no";
+
+
+
+
+    // Load up first question
+
+    setQuestion();
+
+
+
+    // Sets question text and indicator so that we know the question has been displayed
+
+    function setQuestion() {
+
+        selectionValid = false; // Flag to make sure question has not been asked yet
+
+        while (selectionValid == false) {
+
+            currentQuestion = Math.floor(Math.random() * 29); // randomly select starting question
+
+            if (TriviaData[currentQuestion][2] == "no") {
+
+                selectionValid = true;
+
+            }
+
+        }
+
+        document.getElementById("TriviaQuestion").innerHTML = TriviaData[currentQuestion][0];
+
+        TriviaData[currentQuestion][2] = "yes";
+
+        questionsAsked = questionsAsked + 1;
+
+    }
+
+
+
+    function processAnswer(myAnswer) {
+
+        if (TriviaData[currentQuestion][1] == myAnswer) {
+
+            // answer correct
+
+            totalCorrect = totalCorrect + 1;
+
+        }
+
+    }
+
+
+
+    // This function creates our two dimensional array
+
+    function createTwoDimensionalArray(arraySize) {
+
+        for (i = 0; i < TriviaData.length; ++i)
+
+            TriviaData[i] = new Array(arraySize);
+
+    }
+
+
+
+    // This function checks the answer, updates correct total
+
+    // and randomly selects the next question
+
+    function checkAnswer() {
+
+        if (document.getElementById("RadioTrue").checked) {
+
+            processAnswer("true");
+
+        }
+
+        else {
+
+            processAnswer("false");
+
+        }
+
+        // get next question if not asked all yet
+
+        if (questionsAsked < 10) {
+
+            setQuestion();
+
+        }
+
+        // final question asked - disable button and show final results
+
+        else {
+
+            alert("Quiz complete! You got " + totalCorrect + " correct out of 10.");
+
+            document.getElementById("ButtonContinue").disabled = true;
+
+        }
+
+        // update totals
+
+        document.getElementById("NumberAsked").innerHTML = questionsAsked;
+
+        document.getElementById("NumberCorrect").innerHTML = totalCorrect;
+
+    }
+
+
+
+</script>
+</p>
