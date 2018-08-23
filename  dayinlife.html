@@ -1,4 +1,4 @@
-<! DOCTYPE html>
+! DOCTYPE html>
 <html>
 <head>
 <style>
@@ -8,7 +8,7 @@ body {
   background-image: url("white_img.jpg")
 }
 h1 {
-  color:white;
+  color:yellow;
   text-align: center;
   font-size:65;
 }
@@ -17,36 +17,75 @@ h2 {
   text-align: center;
   font-size: 35;
 }
+h3 {
+  color:purple;
+  text-align:center;
+  font-size: 40;
+}
 </style>
 </head>
-<title> Visual World</title>
+<title> Day In My Life</title>
 </head>
   <body>
-  <h1 style= "font-color:white";>Visual World</h1>
+  <h1 style= "font-color:yellow";>Day In My Life</h1>
   <div id= "introduction">
-  <h2 style= "font-color:pink";>Planner</h2>
-
-  <p> This planner uses pictures with your calendar and to have an overall view of your day.</p>
-  <h3 style="font-color:pink";Calendar</h3>
 </div>
   <div>
    <h2>Goals Checklist </h2>
-   <img
-   align: center;
-   src= "http://varunbagga.com/blog/wp-content/uploads/2018/05/Goals-by-Brian-Tracy.png" alt="A picture of blocks spelling goals"/>
-   <p> Here you can set goals for the day, whether they are behavioral or physical, step by step.</p>
-  <h3> Checklist </h3>
+  <div>
+   <h2> Eating </h2>
+    <img src= "https://png.pngtree.com/element_origin_min_pic/17/04/14/57d563a513cf6b99dba943d04c9d7d7b.jpg" alt="girl eating at a table" class= "contain"/>
+    <form>
+      <input type= "radio" name="eating" value= "yes" checked> Yes <br>
+      <input type= "radio" name="eating" value="no" checked>No <br>
+   <h2> Changing Clothes</h2>
+   <img src= "http://clipartstation.com/wp-content/uploads/2017/11/changing-clothes-clipart.png" alt="Boy changing clothes" class= "contain"/>
+    <form>
+      <input type= "radio" name="changing" value="yes" checked>Yes <br>
+      <input type= "radio" name="changing"  value="no" checked>No <br>
+   <h2> Kids Going to School </h2>
+  <img src="https://s3.pixers.pics/pixers/700/FO/55/36/50/46/700_FO55365046_f53164535d4f720d262470f9038e8c5d.jpg" alt="kids going to school" class= "contain"/>
+  <form>
+    <input type="radio" name="school" value="yes" checked> Yes <br>
+    <input type= "radio" name="school" value="no" checked>No <br>
+    <h2> Playing </h2>
+    <img src= "https://image.freepik.com/free-vector/kids-playing-in-sandbox-cartoon-style_22350-463.jpg" alt= "kids playing in sand" class= "contain"/>
+    <form>
+      <input type= "radio" name="changing" value="yes" checked>Yes <br>
+      <input type= "radio" name="changing"  value="no" checked>No <br>
+    </div>
+    <div>
   <h3> Performance</h3>
-  <img
-  src= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUVSydz04LgaIFUoIl-1KCLu6MbyOV2gdFIq1DB4PVPg0ST3_S" alt= "A picture of a yellow star"
-  <p> The starts help rate overall performance for each goal.</p>
+  <img src="https://png.pngtree.com/element_origin_min_pic/16/12/29/bc51dbb75e10cdac62ff744e8fc94361.jpg" alt="Golden star"
+  <p> The stars help rate overall performance for the day.</p>
+  <form>
+    <input type= "radio" name= "star" value= "one" checked> One <br>
+    <input type= "radio" name="star"   value="two"> Two <br>
+    <input type= "radio" name= "star"  value="three">Three <br>
   </div>
   <div id= "mood">
   <h2>Mood Meter</h2>
-  <img
-  src= "https://is1-ssl.mzstatic.com/image/thumb/Purple128/v4/16/85/f4/1685f49d-445b-1862-3b9b-e93b60311c88/mzl.djhmnswb.png/246x0w.jpg" alt= "A block with colors-red, yellow, green, blue"
   <p>Helps track and learn emotions and provides anyalsis of emotions.</p>
+  <form action="feeling_get.php" method="get">
+  Emotion: <input type="text" name="emotion"><br>
+  <input type="submit">
+  feeling <?php echo $_GET ["emotion"];?><br>
+</form>
+  <h2> Sad </h2>
+  <img src="http://1.bp.blogspot.com/-6T2dCFwO5jE/TgJcklxjviI/AAAAAAAAAJM/BcE2z91RNwY/s1600/sad-kid.jpg " alt="girl is sad" class= "contain"/>
+  <h2> Angry </h2>
+  <img src="https://fee.org/media/20005/angry_young_woman.jpg?anchor=center&mode=crop&height=656&widthratio=2.1341463414634146341463414634&rnd=131303491140000000" alt="women is angry" class="contain"/>
+  <h2> Calm </h2>
+  <img src="https://vid.alarabiya.net/images/2015/06/23/64418bcc-8814-4a57-933a-9eabad9cc8e1/64418bcc-8814-4a57-933a-9eabad9cc8e1_16x9_788x442.jpg" alt="man is meditating" class="contain" />
+  <h2> Happy </h2>
+  <img src="http://pluspng.com/img-png/download-happy-person-png-images-transparent-gallery-advertisement-275.png"alt="man smiling with thumps up in the air"class="contain"/>
+  <style>
+  img{
+    object-fit:contain;
+  }
+  <style/>
   </div>
+
   </body>
   </html>
 
